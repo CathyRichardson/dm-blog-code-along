@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import { Link, Switch, Route } from 'react-router-dom';
 import posts from "./../../post_data.json";
+import Post from "../Post/Post";
 import "./TopicList.css";
 
 class TopicList extends Component {
@@ -19,12 +21,16 @@ class TopicList extends Component {
   render() {
     const { posts } = this.state;
     let displayTopics = posts.map(post => {
-      return <li key={post.id}>{post.title}</li>;
+      return <li key={post.id}> <Link to={`/topics/${post.id}`}>{post.title}</Link> </li>;
     });
     return (
       <div className="TopicList">
         <h1>Latest Blog Posts...</h1>
         <ul>{displayTopics}</ul>
+        {/* Can do sub-routing, but not using on this project */}
+        {/* <Switch>
+          <Route component={Post} path="/topics/:id" />
+        </Switch> */}
       </div>
     );
   }
